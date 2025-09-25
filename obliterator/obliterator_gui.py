@@ -17,36 +17,9 @@ from queue import Queue, Empty
 # --- Pillow library for image support ---
 from PIL import Image, ImageTk
 
-# --- AUTHENTICATION INTEGRATION ---
-def check_authentication():
-    """Check if user is authenticated by running login system"""
-    login_dir = os.path.join(os.path.dirname(os.path.abspath(__file__)), "..", "obliterator_login")
-    login_script = os.path.join(login_dir, "login_system.py")
-    
-    if os.path.exists(login_script):
-        print("Authentication required. Launching login system...")
-        try:
-            # Run login system
-            result = subprocess.run([sys.executable, login_script], 
-                                  cwd=login_dir, 
-                                  capture_output=False)
-            
-            if result.returncode == 0:
-                print("Authentication successful!")
-                return True
-            else:
-                print("Authentication failed or cancelled.")
-                return False
-        except Exception as e:
-            print(f"Error running authentication: {e}")
-            return False
-    else:
-        print("Warning: Login system not found. Running without authentication.")
-        return True
-
 # --- Configuration ---
 APP_NAME = "OBLITERATOR"
-APP_VERSION = "12.2-fixed"
+APP_VERSION = "12.2"
 SCRIPT_DIR = os.path.dirname(os.path.abspath(__file__))
 THEME_FILE = os.path.join(SCRIPT_DIR, "purple_theme.json")
 LOGO_FILE = os.path.join(SCRIPT_DIR, "logo.png") 
